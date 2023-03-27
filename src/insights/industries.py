@@ -1,22 +1,16 @@
 from typing import List, Dict
+from src.insights.jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
-    """Checks all different industries and returns a list of them
+    data = read(path)
+    unique_industries = set()
 
-    Must call `read`
+    for job in data:
+        if (job["industry"] != ''):
+            unique_industries.add(job["industry"])
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
-    raise NotImplementedError
+    return unique_industries
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
